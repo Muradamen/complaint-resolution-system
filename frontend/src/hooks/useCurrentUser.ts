@@ -6,6 +6,7 @@ export type CurrentUser = {
   name: string;
   email: string;
   img?: string;
+  role?: string;
 };
 
 export function useCurrentUser() {
@@ -23,7 +24,7 @@ export function useCurrentUser() {
       try {
         // Adjust this endpoint to your backend's "who am I" route
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/me`,
+          `${(process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api").replace(/\/$/, "")}/auth/me/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -45,7 +46,8 @@ export function useCurrentUser() {
         setUser({
           name,
           email: data.email ?? "",
-          img: data.avatar_url || data.image || undefined, // keep provided image if available
+          img: data.avatar_url || data.image || undefined,
+          role: data.user_groups?.[0] || data.role || "Citizen",
         });
       } catch (e) {
         // Optional: handle/log error
