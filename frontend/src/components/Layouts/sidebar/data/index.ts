@@ -4,17 +4,17 @@ export const NAV_DATA = [
   {title:"Dashboard",url:"/dashboard",icon:Icons.HomeIcon,items:[]},
   {title:"Complaints & Appeals",url:"/cases",icon:Icons.Calendar,items:[]},
   {title:"My Assigned Cases",url:"/cases/my-assigned",icon:Icons.User,items:[]},
-  {title:"Case Activity",url:"/cases/activity",icon:Icons.Time,items:[]},
+  {title:"Case Activity",url:"/cases/activity",icon:Icons.Calendar,items:[]},
  ]},
  {label:"ADMINISTRATION",items:[
   {title:"Users",url:"/users",icon:Icons.User,items:[]},
-  {title:"Offices",url:"/offices",icon:Icons.Building,items:[]},
+  {title:"Offices",url:"/offices",icon:Icons.Calendar,items:[]},
   {title:"Roles & Permissions",url:"/roles",icon:Icons.Authentication,items:[]},
   {title:"Reports",url:"/reports",icon:Icons.PieChart,items:[]},
-  {title:"Announcements",url:"/announcements",icon:Icons.Notification,items:[]},
+  {title:"Announcements",url:"/announcements",icon:Icons.Alphabet,items:[]},
  ]},
  {label:"ACCOUNT",items:[
   {title:"My Profile",url:"/profile",icon:Icons.User,items:[]},
-  {title:"Settings",url:"/pages/settings",icon:Icons.Settings,items:[]},
+  {title:"Settings",url:"/pages/settings",icon:Icons.Authentication,items:[]},
  ]}
 ];
