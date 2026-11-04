@@ -14,6 +14,7 @@ const resources = {
       dashboard: "Dashboard",
       role: "Role",
       search: "Search",
+      WORKSPACE: "Workspace", ADMINISTRATION: "Administration", ACCOUNT: "Account", "Complaints & Appeals": "Complaints & Appeals", "My Assigned Cases": "My Assigned Cases", "Case Activity": "Case Activity", Users: "Users", Offices: "Offices", "Roles & Permissions": "Roles & Permissions", Reports: "Reports", Announcements: "Announcements", "My Profile": "My Profile", Settings: "Settings",
       fasterWayToHandle: "A faster way to handle",
       complaintsAndAppealsText: "complaints & appeals",
       paperProcessesModernized:
@@ -33,6 +34,7 @@ const resources = {
       dashboard: "ዳሽቦርድ",
       role: "ሚና",
       search: "ፈልግ",
+      WORKSPACE: "የሥራ ቦታ", ADMINISTRATION: "አስተዳደር", ACCOUNT: "መለያ", "Complaints & Appeals": "ቅሬታዎችና ይግባኞች", "My Assigned Cases": "የተመደቡልኝ ጉዳዮች", "Case Activity": "የጉዳይ እንቅስቃሴ", Users: "ተጠቃሚዎች", Offices: "ቢሮዎች", "Roles & Permissions": "ሚናዎችና ፈቃዶች", Reports: "ሪፖርቶች", Announcements: "ማስታወቂያዎች", "My Profile": "የግል መረጃ", Settings: "ቅንብሮች",
       fasterWayToHandle: "የማስተናገድ ፈጣን መንገድ",
       complaintsAndAppealsText: "ያሰተላለፉ እና ጥያቄዎች",
       paperProcessesModernized:
@@ -71,6 +73,7 @@ const resources = {
       dashboard: "Daashboordii",
       role: "Gahee",
       search: "Barbaadi",
+      WORKSPACE: "Iddoo hojii", ADMINISTRATION: "Bulchiinsa", ACCOUNT: "Herrega", "Complaints & Appeals": "Komii fi iyyannoo", "My Assigned Cases": "Dhimmoota naaf ramadaman", "Case Activity": "Sochii dhimmaa", Users: "Fayyadamtoota", Offices: "Waajjiraalee", "Roles & Permissions": "Gahee fi hayyama", Reports: "Gabaasa", Announcements: "Beeksisa", "My Profile": "Odeeffannoo koo", Settings: "Qindaa ina",
       fasterWayToHandle: "Too'achuu karaa saffisaa",
       complaintsAndAppealsText: "komii fi iyyannoo",
       paperProcessesModernized:
@@ -89,7 +92,7 @@ export function initI18n() {
       .init({
         resources,
         fallbackLng: "en",
-        supportedLngs: ["en", "am", "ha", "om"],
+        supportedLngs: ["en", "am", "om"],
         interpolation: { escapeValue: false },
         detection: {
           order: ["localStorage", "navigator", "htmlTag"],
