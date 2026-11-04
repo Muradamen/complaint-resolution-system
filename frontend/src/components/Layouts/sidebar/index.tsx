@@ -16,8 +16,14 @@ export function Sidebar() {
   const pathname = usePathname();
   const { t } = useTranslation();
   const { user } = useCurrentUser();
-  const isCitizen = (user?.role || "").toLowerCase().includes("citizen");
-  const visibleSections = NAV_DATA.map((section) => ({ ...section, items: section.items.filter((item) => !(isCitizen && section.label === "ADMINISTRATION")) }));
+  const role = (user?.role || "").toLowerCase();
+  const isCitizen = role.includes("citizen");
+  const canManage = role.includes("director") || role.includes("president") || role.includes("admin");
+  const visibleSections = NAV_DATA.map((section) => ({ ...section, items: section.items.filter((item) => {
+    if (section.label === "ADMINISTRATION" && !canManage) return false;
+    if (isCitizen && ["My Assigned Cases", "Case Activity"].includes(item.title)) return false;
+    return true;
+  }) }));
   const { setIsOpen, isOpen, isMobile, toggleSidebar } = useSidebarContext();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
