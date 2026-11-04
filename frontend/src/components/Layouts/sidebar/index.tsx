@@ -9,9 +9,21 @@ import { NAV_DATA } from "./data";
 import { ArrowLeftIcon, ChevronUp } from "./icons";
 import { MenuItem } from "./menu-item";
 import { useSidebarContext } from "./sidebar-context";
+import { useTranslation } from "react-i18next";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation();
+  const { user } = useCurrentUser();
+  const role = (user?.role || "").toLowerCase();
+  const isCitizen = role.includes("citizen");
+  const canManage = role.includes("director") || role.includes("president") || role.includes("admin");
+  const visibleSections = NAV_DATA.map((section) => ({ ...section, items: section.items.filter((item) => {
+    if (section.label === "ADMINISTRATION" && !canManage) return false;
+    if (isCitizen && ["My Assigned Cases", "Case Activity"].includes(item.title)) return false;
+    return true;
+  }) }));
   const { setIsOpen, isOpen, isMobile, toggleSidebar } = useSidebarContext();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
@@ -87,13 +99,13 @@ export function Sidebar() {
 
           {/* Navigation */}
           <div className="custom-scrollbar mt-6 flex-1 overflow-y-auto pr-3 min-[850px]:mt-10">
-            {NAV_DATA.map((section) => (
+            {visibleSections.map((section) => (
               <div key={section.label} className="mb-6">
                 <h2 className="mb-5 text-sm font-medium text-dark-4 dark:text-dark-6">
                   {section.label}
                 </h2>
 
-                <nav role="navigation" aria-label={section.label}>
+                <nav role="navigation" aria-label={t(section.label)}>
                   <ul className="space-y-2">
                     {section.items.map((item) => (
                       <li key={item.title}>
@@ -110,7 +122,7 @@ export function Sidebar() {
                                 aria-hidden="true"
                               />
 
-                              <span>{item.title}</span>
+                              <span>{t(item.title)}</span>
 
                               <ChevronUp
                                 className={cn(
@@ -134,7 +146,7 @@ export function Sidebar() {
                                       href={subItem.url}
                                       isActive={pathname === subItem.url}
                                     >
-                                      <span>{subItem.title}</span>
+                                      <span>{t(subItem.title)}</span>
                                     </MenuItem>
                                   </li>
                                 ))}
